@@ -1,0 +1,16 @@
+Source: copyforforum
+Section: plugins
+Priority: optional
+Maintainer: Matt Jenkins <matt@majenko.co.uk>
+Build-Depends: debhelper (>= 9)
+Standards-Version: 3.9.5
+
+Package: copyforforum
+Section: plugins
+Architecture: all
+XBSC-Group: Programming
+Description: Copy for Forum
+ Copy sketch contents formatted for forums (BBCode tags)
+
+
+

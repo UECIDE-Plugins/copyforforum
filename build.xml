@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<project name="CopyForForum" default="build">
+
+    <property file="build.settings"/>
+
+    <tstamp><format property="TODAY" pattern="yyyyMMdd" /></tstamp>
+
+    <target name="clean" description="Clean the build directories">
+        <delete dir="bin" />
+        <delete file="CopyForForum.jar" />
+    </target>
+
+    <target name="compile" description="Compile sources">
+        <mkdir dir="bin" />
+        <javac 
+            srcdir="src" 
+            destdir="bin" 
+            classpath="${uecide.path}/uecide.jar" 
+            includeantruntime="false"/>
+    </target>
+   
+    <target name="build" depends="compile" description="Build the plugin jar">
+        <jar destfile="CopyForForum.jar">
+            <fileset dir="bin" />
+            <fileset dir="resources" />
+            <manifest>
+                <attribute name="Version" value="${version}" />
+                <attribute name="Minimum-Version" value="${version.minimum}" />
+                <attribute name="Author" value="Majenko Technologies" />
+                <attribute name="Main-Class" value="org.uecide.plugin.CopyForForum" />
+                <attribute name="Description" value="Copy text for posting as code on a forum" />
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="install" depends="build">
+        <copy file="CopyForForum.jar" todir="${install.path}" />
+    </target>
+
+    <target name="test" depends="install">
+        <exec executable="${uecide.path}/uecide.jar">
+            <arg value="--exceptions" />
+        </exec>
+    </target>
+</project>
